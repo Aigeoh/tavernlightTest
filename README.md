@@ -4,9 +4,9 @@ questions 1 - 4
 
 1:
 
-local StorageKey = 1000  --use variables instead of straight numbers, easier to modify on the fly and or add some kinda detection method to fine tune the most efficient numbers
-local ReleaseStorageDelay = 1000
-local function releaseStorage(player)
+    local StorageKey = 1000  --use variables instead of straight numbers, easier to modify on the fly and or add some kinda detection method to fine tune the most efficient numbers
+    local ReleaseStorageDelay = 1000
+    local function releaseStorage(player)
     player:setStorageValue(StorageKey, -1) -- i dont have acess to this method, so i can only assume the storage value has something to do with saving the inventory on logout
     end
     
@@ -20,8 +20,8 @@ local function releaseStorage(player)
 
 2: 
 
-function printSmallGuildNames(memberCount)
-    -- Prepare the query with certain input
+    function printSmallGuildNames(memberCount)
+        -- Prepare the query with certain input
     local selectGuildQuery = "SELECT name FROM guilds WHERE max_members < ?;"
     
     -- run the query with the provided memberCount
@@ -48,9 +48,9 @@ end
 
 3:
 
-function doSthWithPlayerParty(playerId, membername)
-    local player = Player(playerId)
-    local v = party.getMembers.count   -- Gave v a local variable equal to the party member count
+    function doSthWithPlayerParty(playerId, membername)
+        local player = Player(playerId)
+        local v = party.getMembers.count   -- Gave v a local variable equal to the party member count
     
     if player then -- Checks if there is a player
         local party = player:getParty()
@@ -79,33 +79,33 @@ function doSthWithPlayerParty(playerId, membername)
         print("Player does not exist.")
         return false
     end
-end
+    end
 
 
 
 4:
 
-void Game::addItemToPlayer(const std::string& recipient, uint16_t itemId)
-{
-Player* player = g_game.getPlayerByName(recipient);
-Player* player = g_game.getPlayerByName(recipient);
-if (!player) {
+    void Game::addItemToPlayer(const std::string& recipient, uint16_t itemId)
+    {
+    Player* player = g_game.getPlayerByName(recipient);
+    Player* player = g_game.getPlayerByName(recipient);
+    if (!player) {
     player = new Player(nullptr);    -- creates a new player if there isnt one
     if (!IOLoginData::loadPlayerByName(player, recipient)) {
         delete player; -- Clean up the dynamically allocated memory, before hand if the check failed it wouldnt clean up the player that was created from the previous if statement
         return;
+        }
     }
-}
 
 
-Item* item = Item::CreateItem(itemId);
-if (!item) {
-return;
-}
+    Item* item = Item::CreateItem(itemId);
+    if (!item) {
+    return;
+    }
 
-g_game.internalAddItem(player->getInbox(), item, INDEX_WHEREEVER, FLAG_NOLIMIT);
+    g_game.internalAddItem(player->getInbox(), item, INDEX_WHEREEVER, FLAG_NOLIMIT);
 
-if (player->isOffline()) {
-IOLoginData::savePlayer(player);
-}
-}
+    if (player->isOffline()) {
+    IOLoginData::savePlayer(player);
+    }
+    }
